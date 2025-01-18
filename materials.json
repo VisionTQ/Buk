@@ -1,0 +1,20 @@
+{
+  "materials": [
+    {
+      "name": "كتاب الفيزياء",
+      "url": "assets/physics.pdf"
+    },
+    {
+      "name": "كتاب الرياضيات",
+      "url": "assets/math.pdf"
+    },
+    {
+      "name": "كتاب الأحياء",
+      "url": "assets/biology.pdf"
+    },
+    {
+      "name": "أوراق عمل",
+      "url": "assets/worksheets.pdf"
+    }
+  ]
+}

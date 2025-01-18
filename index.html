@@ -1,240 +1,280 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Library</title>
+    <title>مجموعة المدرسة 3/ الصحة</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
+        :root {
+            --primary-bg: #000000;
+            --secondary-bg: #111111;
+            --text-color: #ffffff;
+            --accent-color: #333333;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background-color: #f5f5f5;
-            padding: 20px;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            line-height: 1.6;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
         }
 
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-        }
-
-        .pdf-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .pdf-item {
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 4px;
-            padding: 15px;
-            transition: transform 0.2s;
-        }
-
-        .pdf-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .pdf-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .pdf-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            padding: 8px 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.2s;
-        }
-
-        .btn-view {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .btn-download {
-            background-color: #28a745;
-            color: white;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .page-btn {
-            padding: 8px 12px;
-            border: 1px solid #dee2e6;
-            background-color: white;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .page-btn.active {
-            background-color: #007bff;
-            color: white;
-            border-color: #007bff;
-        }
-
-        .pdf-viewer {
-            display: none;
-            position: fixed;
+        header {
+            background-color: var(--secondary-bg);
+            padding: 1rem 0;
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        .pdf-viewer iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
         }
 
-        .close-viewer {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 30px;
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: var(--accent-color);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 3rem 0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .markdown-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .markdown-content h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .markdown-content h2 { font-size: 1.8rem; margin: 2rem 0 1rem; }
+        .markdown-content h3 { font-size: 1.4rem; margin: 1.5rem 0 1rem; }
+        .markdown-content p { margin-bottom: 1rem; }
+        .markdown-content ul { margin: 1rem 2rem; }
+        .markdown-content li { margin-bottom: 0.5rem; }
+        .markdown-content a { color: var(--text-color); }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .schedule-day {
+            background-color: var(--secondary-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--accent-color);
+        }
+
+        .schedule-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .material-button {
+            background-color: var(--secondary-bg);
+            color: var(--text-color);
+            padding: 1.5rem;
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
             cursor: pointer;
-            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+
+        .material-button:hover {
+            background-color: var(--accent-color);
+        }
+
+        .discord-button {
+            background-color: #5865F2;
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 2rem;
         }
 
         @media (max-width: 768px) {
-            .pdf-grid {
-                grid-template-columns: 1fr;
-            }
+            .container { padding: 1rem; }
+            .nav-links { flex-direction: column; width: 100%; }
+            .nav-link { width: 100%; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>PDF Library</h1>
-        <div class="pdf-grid" id="pdfGrid"></div>
-        <div class="pagination" id="pagination"></div>
-    </div>
+    <header>
+        <nav class="container">
+            <div class="nav-links">
+                <a href="#home" class="nav-link" data-tab="home">الرئيسية</a>
+                <a href="#schedule" class="nav-link" data-tab="schedule">الجدول</a>
+                <a href="#materials" class="nav-link" data-tab="materials">المواد الدراسية</a>
+                <a href="#credits" class="nav-link" data-tab="credits">الاعتمادات</a>
+                <a href="#discord" class="nav-link" data-tab="discord">ديسكورد</a>
+            </div>
+        </nav>
+    </header>
 
-    <div class="pdf-viewer" id="pdfViewer">
-        <span class="close-viewer" onclick="closePdfViewer()">&times;</span>
-        <iframe id="pdfFrame"></iframe>
-    </div>
+    <main class="container">
+        <div id="home" class="tab-content active">
+            <div id="home-content" class="markdown-content"></div>
+        </div>
+
+        <div id="schedule" class="tab-content">
+            <h2>الجدول الأسبوعي</h2>
+            <img src="assets/image.png" alt="جدول الحصص" class="schedule-image">
+            <div class="schedule-grid"></div>
+        </div>
+
+        <div id="materials" class="tab-content">
+            <h2>المواد الدراسية</h2>
+            <div class="materials-grid"></div>
+        </div>
+
+        <div id="credits" class="tab-content">
+            <div id="credits-content" class="markdown-content"></div>
+        </div>
+
+        <div id="discord" class="tab-content">
+            <h2>انضم إلينا على ديسكورد</h2>
+            <p>انضم إلى مجتمعنا على الديسكورد للتواصل مع الزملاء والمعلمين</p>
+            <a href="https://discord.gg/fQ39YxY7Fq" class="discord-button" target="_blank">انضم للسيرفر</a>
+        </div>
+    </main>
 
     <script>
-        // Sample PDF data - Replace with your actual PDF links
-        const pdfs = [
-            { title: "Document 1", url: "https://visiontq.github.io/Buk/BukRe.pdf" },
-            { title: "Document 2", url: "https://visiontq.github.io/Buk/BukRe1.pdf" },
-            { title: "Document 3", url: "https://visiontq.github.io/Buk/BukRe2.pdf" },
-            // Add more PDF objects as needed
-        ];
-
-        const itemsPerPage = 6;
-        let currentPage = 1;
-
-        function displayPDFs(page) {
-            const pdfGrid = document.getElementById('pdfGrid');
-            pdfGrid.innerHTML = '';
-
-            const startIndex = (page - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const paginatedPDFs = pdfs.slice(startIndex, endIndex);
-
-            paginatedPDFs.forEach(pdf => {
-                const pdfItem = document.createElement('div');
-                pdfItem.className = 'pdf-item';
-                pdfItem.innerHTML = `
-                    <div class="pdf-title">${pdf.title}</div>
-                    <div class="pdf-actions">
-                        <button class="btn btn-view" onclick="viewPdf('${pdf.url}')">View</button>
-                        <button class="btn btn-download" onclick="downloadPdf('${pdf.url}')">Download</button>
-                    </div>
-                `;
-                pdfGrid.appendChild(pdfItem);
-            });
-
-            updatePagination();
+        // Tab Navigation
+        function updateActiveTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
         }
 
-        function updatePagination() {
-            const totalPages = Math.ceil(pdfs.length / itemsPerPage);
-            const pagination = document.getElementById('pagination');
-            pagination.innerHTML = '';
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const tabId = link.getAttribute('data-tab');
+                updateActiveTab(tabId);
+                window.location.hash = tabId;
+            });
+        });
 
-            for (let i = 1; i <= totalPages; i++) {
-                const pageBtn = document.createElement('button');
-                pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
-                pageBtn.textContent = i;
-                pageBtn.onclick = () => {
-                    currentPage = i;
-                    displayPDFs(currentPage);
-                };
-                pagination.appendChild(pageBtn);
+        // Load Markdown Content
+        async function loadMarkdownContent(file, elementId) {
+            try {
+                const response = await fetch(file);
+                const markdown = await response.text();
+                document.getElementById(elementId).innerHTML = marked.parse(markdown);
+            } catch (error) {
+                console.error(`Error loading ${file}:`, error);
             }
         }
 
-        function viewPdf(url) {
-            const pdfViewer = document.getElementById('pdfViewer');
-            const pdfFrame = document.getElementById('pdfFrame');
-            pdfFrame.src = url;
-            pdfViewer.style.display = 'block';
-            document.body.style.overflow = 'hidden';
+        // Load JSON Data
+        async function loadJSONData() {
+            try {
+                const [scheduleRes, materialsRes] = await Promise.all([
+                    fetch('schedule.json'),
+                    fetch('materials.json')
+                ]);
+                
+                const schedule = await scheduleRes.json();
+                const materials = await materialsRes.json();
+
+                // Populate schedule
+                const scheduleGrid = document.querySelector('.schedule-grid');
+                scheduleGrid.innerHTML = schedule.days.map(day => `
+                    <div class="schedule-day">
+                        <h3>${day.name}</h3>
+                        <ul>
+                            ${day.lessons.map(lesson => `<li>${lesson}</li>`).join('')}
+                        </ul>
+                    </div>
+                `).join('');
+
+                // Populate materials
+                const materialsGrid = document.querySelector('.materials-grid');
+                materialsGrid.innerHTML = materials.materials.map(material => `
+                    <a href="${material.url}" class="material-button" target="_blank">
+                        ${material.name}
+                    </a>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading JSON data:', error);
+            }
         }
 
-        function closePdfViewer() {
-            const pdfViewer = document.getElementById('pdfViewer');
-            const pdfFrame = document.getElementById('pdfFrame');
-            pdfViewer.style.display = 'none';
-            pdfFrame.src = '';
-            document.body.style.overflow = 'auto';
+        // Initialize
+        async function init() {
+            await Promise.all([
+                loadMarkdownContent('home.md', 'home-content'),
+                loadMarkdownContent('credits.md', 'credits-content'),
+                loadJSONData()
+            ]);
+
+            // Handle initial hash
+            const hash = window.location.hash.slice(1) || 'home';
+            updateActiveTab(hash);
         }
 
-        function downloadPdf(url) {
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = url.split('/').pop();
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        // Initialize the display
-        document.addEventListener('DOMContentLoaded', () => {
-            displayPDFs(currentPage);
-        });
+        // Start
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
