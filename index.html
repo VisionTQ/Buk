@@ -24,21 +24,33 @@
             background-color: var(--primary-bg);
             color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 1rem;
         }
 
         header {
             background-color: var(--secondary-bg);
-            padding: 1rem 0;
+            padding: 0.5rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
         }
 
         nav {
@@ -46,21 +58,23 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 1.5rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
             flex-wrap: wrap;
+            width: 100%;
         }
 
         .nav-link {
             color: var(--text-color);
             text-decoration: none;
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem 1rem;
             border-radius: 6px;
             transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
         }
 
         .nav-link:hover {
@@ -69,7 +83,7 @@
 
         .tab-content {
             display: none;
-            padding: 3rem 0;
+            padding: 2rem 0;
             animation: fadeIn 0.5s ease;
         }
 
@@ -83,56 +97,60 @@
         }
 
         .markdown-content {
+            width: 100%;
             max-width: 800px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
 
-        .markdown-content h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
-        .markdown-content h2 { font-size: 1.8rem; margin: 2rem 0 1rem; }
-        .markdown-content h3 { font-size: 1.4rem; margin: 1.5rem 0 1rem; }
-        .markdown-content p { margin-bottom: 1rem; }
-        .markdown-content ul { margin: 1rem 2rem; }
+        .markdown-content h1 { font-size: 2rem; margin-bottom: 1.5rem; }
+        .markdown-content h2 { font-size: 1.5rem; margin: 1.5rem 0 1rem; }
+        .markdown-content h3 { font-size: 1.25rem; margin: 1.25rem 0 1rem; }
+        .markdown-content p { margin-bottom: 1rem; font-size: 1rem; }
+        .markdown-content ul { margin: 1rem 1.5rem; }
         .markdown-content li { margin-bottom: 0.5rem; }
         .markdown-content a { color: var(--text-color); }
 
         .schedule-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
         }
 
         .schedule-day {
             background-color: var(--secondary-bg);
-            padding: 1.5rem;
+            padding: 1.25rem;
             border-radius: 8px;
             border: 1px solid var(--accent-color);
         }
 
         .schedule-image {
             width: 100%;
-            max-width: 800px;
             height: auto;
-            margin: 2rem auto;
+            margin: 1.5rem auto;
             display: block;
             border-radius: 8px;
         }
 
         .materials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
         }
 
         .material-button {
             background-color: var(--secondary-bg);
             color: var(--text-color);
-            padding: 1.5rem;
+            padding: 1.25rem;
             border: 1px solid var(--accent-color);
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1rem;
         }
 
         .material-button:hover {
@@ -142,26 +160,72 @@
         .discord-button {
             background-color: #5865F2;
             color: white;
-            padding: 1rem 2.5rem;
+            padding: 0.875rem 2rem;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
         }
 
-        @media (max-width: 768px) {
-            .container { padding: 1rem; }
-            .nav-links { flex-direction: column; width: 100%; }
-            .nav-link { width: 100%; text-align: center; }
+        @media (min-width: 768px) {
+            .container { padding: 2rem; }
+            
+            .nav-links {
+                flex-direction: row;
+                width: auto;
+            }
+            
+            .nav-link {
+                width: auto;
+            }
+            
+            .schedule-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .materials-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .discord-button {
+                width: auto;
+            }
+            
+            .markdown-content h1 { font-size: 2.5rem; }
+            .markdown-content h2 { font-size: 1.8rem; }
+            .markdown-content h3 { font-size: 1.4rem; }
+        }
+
+        @media (max-width: 767px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <nav class="container">
+            <button class="menu-toggle">☰</button>
             <div class="nav-links">
                 <a href="#home" class="nav-link" data-tab="home">الرئيسية</a>
                 <a href="#schedule" class="nav-link" data-tab="schedule">الجدول</a>
@@ -200,6 +264,23 @@
     </main>
 
     <script>
+        // Toggle Menu
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link on mobile
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 767) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
         // Tab Navigation
         function updateActiveTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
