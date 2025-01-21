@@ -1,20 +1,28 @@
 {
   "materials": [
     {
-      "name": "Coming Soon.. ",
-      "url": "assets/physics.pdf"
+      "name": "فيزياء",
+      "url": "https://iencontent.ien.edu.sa/Books/bf69a043-GE-CBM-HL-TRC3-SM2-PHYS2.pdf"
     },
     {
-      "name": "Coming Soon.. ",
-      "url": "assets/math.pdf"
+      "name": "رياضيات",
+      "url": "https://iencontent.ien.edu.sa/Books/3d1bab9f-GE-CBM-HL-TRC3-SM2-MATH2.3.pdf"
     },
     {
-      "name": "Coming Soon.. ",
-      "url": "assets/biology.pdf"
+      "name": "رعاية صحية",
+      "url": "https://iencontent.ien.edu.sa/Books/ef86210a-GE-CBM-HL-TRC3-SM2-HC1.2.pdf"
     },
     {
-      "name": "Coming Soon.. ",
-      "url": "assets/worksheets.pdf"
+      "name": "أنظمة الجسم",
+      "url": "https://iencontent.ien.edu.sa/Books/4634353f-GE-CBM-HL-TRC3-SM2-HBS1.2.pdf"
+    },
+    {
+      "name": "English",
+      "url": "https://iencontent.ien.edu.sa/Books/247e7af5-GE-CBM-HL-TRC3-SM2-ENGLMH3.2.pdf"
+    },
+    {
+      "name": "فقه",
+      "url": "https://iencontent.ien.edu.sa/Books/cd603ebf-GE-CBM-HL-TRC3-SM2-FGAH1.pdf"
     }
   ]
 }
