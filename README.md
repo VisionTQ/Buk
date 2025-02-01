@@ -1,12 +1,11 @@
 # https://visiontq.github.io/Buk/
 
 Home Work:
-https://canary.discord.com/api/webhooks/1330243281614798930/OpcX0m62RZNNGmGb9v4oWt3VT2tZ8rbblGTGGdZMk9lCXFpz_DlmGvc8r31yRjNB2F
+https://discord.com/api/webhooks/1335133407243665490/jb7h5T43UO9WnN0NJElXguVgrfjOq8O6hrVu-oA1L0W2MxDrZdfZeyF0APuFnaZGP
 
 Exams:
-https://canary.discord.com/api/webhooks/1330243492856725535/l3HP1RdNOCwtqkZdqB2Lj1U4TCj3h-1Bnpf_lVZdq_c6RKrtXmo5h-0lWkDoLhF4XH
+https://canary.discord.com/api/webhooks/1335134265750323231/X87hhEPCL4bVGwFHWwMhs-br2x3QTrk3DQftZNc53euE3cAmk7o3X2Oy94Bt0MToQT
 
-# https://discohook.org/
 
-QQ0
-K10
+N-C
+rY
