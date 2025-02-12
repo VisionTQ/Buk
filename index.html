@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مجموعة المدرسة 3/ الصحة</title>
+    <link rel="icon" type="image/x-icon" id="favicon">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+
         :root {
             --primary-bg: #000000;
             --secondary-bg: #111111;
@@ -17,7 +21,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: 'Tajawal', sans-serif;
         }
 
         body {
@@ -39,8 +43,8 @@
             padding: 0.5rem 0;
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .menu-toggle {
@@ -62,9 +66,10 @@
 
         .nav-links {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
+            align-items: center;
             flex-wrap: wrap;
-            width: 100%;
+            width: auto;
         }
 
         .nav-link {
@@ -73,8 +78,9 @@
             padding: 0.75rem 1rem;
             border-radius: 6px;
             transition: all 0.3s ease;
-            width: 100%;
+            width: auto;
             text-align: center;
+            font-size: 1rem;
         }
 
         .nav-link:hover {
@@ -88,8 +94,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .tab-content.active {
@@ -103,13 +116,37 @@
             padding: 0 1rem;
         }
 
-        .markdown-content h1 { font-size: 2rem; margin-bottom: 1.5rem; }
-        .markdown-content h2 { font-size: 1.5rem; margin: 1.5rem 0 1rem; }
-        .markdown-content h3 { font-size: 1.25rem; margin: 1.25rem 0 1rem; }
-        .markdown-content p { margin-bottom: 1rem; font-size: 1rem; }
-        .markdown-content ul { margin: 1rem 1.5rem; }
-        .markdown-content li { margin-bottom: 0.5rem; }
-        .markdown-content a { color: var(--text-color); }
+        .markdown-content h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .markdown-content h2 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .markdown-content h3 {
+            font-size: 1.25rem;
+            margin: 1.25rem 0 1rem;
+        }
+
+        .markdown-content p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .markdown-content ul {
+            margin: 1rem 1.5rem;
+        }
+
+        .markdown-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .markdown-content a {
+            color: var(--text-color);
+        }
 
         .schedule-grid {
             display: grid;
@@ -175,34 +212,44 @@
         }
 
         @media (min-width: 768px) {
-            .container { padding: 2rem; }
-            
+            .container {
+                padding: 2rem;
+            }
+
             .nav-links {
                 flex-direction: row;
                 width: auto;
             }
-            
+
             .nav-link {
                 width: auto;
             }
-            
+
             .schedule-grid {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: 1.5rem;
             }
-            
+
             .materials-grid {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
                 gap: 1.5rem;
             }
-            
+
             .discord-button {
                 width: auto;
             }
-            
-            .markdown-content h1 { font-size: 2.5rem; }
-            .markdown-content h2 { font-size: 1.8rem; }
-            .markdown-content h3 { font-size: 1.4rem; }
+
+            .markdown-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .markdown-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .markdown-content h3 {
+                font-size: 1.4rem;
+            }
         }
 
         @media (max-width: 767px) {
@@ -219,20 +266,75 @@
             .nav-links.active {
                 display: flex;
             }
+
+            .nav-link {
+                width: 100%;
+            }
+        }
+
+        .profile-container {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            margin-right: 1.5rem;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 100%;
+                background-color: #ffffff;
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-tabs.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .profile-container {
+                margin-right: 0;
+            }
         }
     </style>
 </head>
+
 <body>
     <header>
         <nav class="container">
             <button class="menu-toggle">☰</button>
-            <div class="nav-links">
-                <a href="#home" class="nav-link" data-tab="home">الرئيسية</a>
-                <a href="#schedule" class="nav-link" data-tab="schedule">الجدول</a>
-                <a href="#materials" class="nav-link" data-tab="materials">المواد الدراسية</a>
-                <a href="#credits" class="nav-link" data-tab="credits">الاعتمادات</a>
-                <a href="#discord" class="nav-link" data-tab="discord">ديسكورد</a>
+            <div class="nav-links" id="navTabs">
+                <!-- Navigation links will be dynamically added here -->
             </div>
+            <div class="profile-container" id="profileContainer"></div>
         </nav>
     </header>
 
@@ -314,7 +416,7 @@
                     fetch('schedule.json'),
                     fetch('materials.json')
                 ]);
-                
+
                 const schedule = await scheduleRes.json();
                 const materials = await materialsRes.json();
 
@@ -341,6 +443,74 @@
             }
         }
 
+        async function initializeNavigation() {
+            try {
+                const configResponse = await fetch('config.json');
+                if (!configResponse.ok) throw new Error('Failed to load configuration');
+                const config = await configResponse.json();
+
+                // Set favicon
+                const favicon = document.getElementById('favicon');
+                favicon.href = config.favicon;
+
+                // Initialize navigation tabs
+                const navTabs = document.getElementById('navTabs');
+                Object.entries(config.navTabs).forEach(([key, tab]) => {
+                    if (tab.enabled) {
+                        const link = document.createElement('a');
+                        link.href = `#${key}`;
+                        link.className = 'nav-link';
+                        link.textContent = tab.label;
+                        link.setAttribute('data-tab', key); // Important: Add data-tab attribute
+                        navTabs.appendChild(link);
+                    }
+                });
+
+                // Initialize profile
+                if (config.profile.enabled) {
+                    const profileContainer = document.getElementById('profileContainer');
+                    const profileLink = document.createElement('a');
+                    profileLink.href = config.profile.linkUrl;
+                    const profileImg = document.createElement('img');
+                    profileImg.src = config.profile.imageUrl;
+                    profileImg.alt = 'Profile';
+                    profileImg.className = 'profile-img';
+                    profileImg.onerror = () => {
+                        profileImg.src = 'assets/default-profile.png';
+                    };
+                    profileLink.appendChild(profileImg);
+                    profileContainer.appendChild(profileLink);
+                }
+
+                // Mobile menu functionality (adjustments for new structure)
+                const mobileMenu = document.querySelector('.menu-toggle');
+                mobileMenu.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('nav')) { // Check if click is outside the nav element
+                        navLinks.classList.remove('active');
+                    }
+                });
+
+
+            } catch (error) {
+                console.error('Navigation initialization failed:', error);
+                // Fallback to basic navigation if config fails to load
+                const navTabs = document.getElementById('navTabs');
+                ['الرئيسية', 'الجدول', 'المواد الدراسية'].forEach(label => {
+                    const link = document.createElement('a');
+                    link.href = '#';
+                    link.className = 'nav-link';
+                    link.textContent = label;
+                    navTabs.appendChild(link);
+                });
+            }
+        }
+
+
         // Initialize
         async function init() {
             await Promise.all([
@@ -348,6 +518,23 @@
                 loadMarkdownContent('credits.md', 'credits-content'),
                 loadJSONData()
             ]);
+
+            // Initialize navigation after loading content.
+            await initializeNavigation();
+
+
+            // Attach click listeners to the dynamically generated navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const tabId = link.getAttribute('data-tab');
+                    updateActiveTab(tabId);
+                    window.location.hash = tabId;
+                    if (window.innerWidth <= 767) {
+                        navLinks.classList.remove('active'); // Close mobile menu after click
+                    }
+                });
+            });
 
             // Handle initial hash
             const hash = window.location.hash.slice(1) || 'home';
@@ -358,4 +545,5 @@
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
+
 </html>

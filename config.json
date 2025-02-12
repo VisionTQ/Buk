@@ -1,0 +1,39 @@
+{
+  "navTabs": {
+    "home": { 
+      "enabled": true, 
+      "label": "الرئيسية",
+      "source": "home.md"
+    },
+    "schedule": { 
+      "enabled": false, 
+      "label": "الجدول",
+      "source": "schedule.json"
+    },
+    "materials": { 
+      "enabled": true, 
+      "label": "المواد الدراسية",
+      "source": "materials.json"
+    },
+    "credits": { 
+      "enabled": true, 
+      "label": "الاعتمادات",
+      "source": "credits.md"
+    },
+    "discord": { 
+      "enabled": true, 
+      "label": "ديسكورد"
+    },
+    "finalExam": { 
+      "enabled": false, 
+      "label": "الاختبار النهائي",
+      "source": "finalExam.md"
+    }
+  },
+  "profile": {
+    "enabled": true,
+    "imageUrl": "https://avatars.githubusercontent.com/u/186947299",
+    "linkUrl": "https://avatars.githubusercontent.com/u/186947299"
+  },
+  "favicon": "https://avatars.githubusercontent.com/u/186947299"
+}
